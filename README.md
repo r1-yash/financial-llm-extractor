@@ -1,4 +1,4 @@
-# Financial LLM Extractor (Practice Project)
+<img width="1437" height="860" alt="Screenshot 2026-02-20 at 12 33 54 PM" src="https://github.com/user-attachments/assets/5619a926-306c-4fb2-aad3-8dcbf0180b19" /># Financial LLM Extractor (Practice Project)
 
 This is a backend-focused practice project where I built a small FastAPI service that extracts structured financial metrics from PDF annual reports using Google Gemini.
 
@@ -84,9 +84,7 @@ financial_llm_extractor/
 ## Demo Screenshot
 
 Below is the API working via Swagger UI:
+<img width="1437" height="860" alt="Screenshot 2026-02-20 at 12 33 54 PM" src="https://github.com/user-attachments/assets/a55c7221-051b-47c7-b17c-a90299d2566c" />
 
 
-## Demo Screenshot
 
--Available in the assets folder
-![Swagger UI for Demo](assets/screenshot.png)
