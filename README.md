@@ -1,87 +1,29 @@
-# Financial LLM Extractor
+# Financial LLM Extractor (Practice Project)
 
-Production-ready FastAPI service that extracts financial metrics (Revenue, Net Income, Total Debt, Total Assets, EPS) from PDF annual reports using the **Google Gemini 1.5 Flash** API.
+This is a backend-focused practice project where I built a small FastAPI service that extracts structured financial metrics from PDF annual reports using Google Gemini.
 
-## Security
+The goal of this project was to understand:
 
-- **Never hardcode API keys.** The app loads `GEMINI_API_KEY` from the environment via `python-dotenv`.
-- The key is **never logged or printed**. Keep your `.env` file out of version control.
+- How to handle PDF file uploads in FastAPI  
+- How to extract raw text from PDFs  
+- How to call an LLM using a REST API  
+- How to enforce structured JSON output from an LLM  
+- How to manage API keys securely  
 
----
-
-## Quick Start
-
-### 1. Create a virtual environment
-
-```bash
-cd financial_llm_extractor
-python3 -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
-```
-
-### 2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Get a Gemini API key
-
-1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey).
-2. Sign in with your Google account.
-3. Click **Create API key** and copy the key.
-
-### 4. Configure the API key
-
-- **Copy the example env file:**
-  ```bash
-  cp .env.example .env
-  ```
-- **Edit `.env`** and replace the placeholder with your key:
-  ```
-  GEMINI_API_KEY=your_actual_key_here
-  ```
-- **Where to paste:** In the project root, in the `.env` file, as the value of `GEMINI_API_KEY`. Do not commit `.env` to Git.
-
-### 5. Run the server
-
-```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
-
-Or:
-
-```bash
-python main.py
-```
-
-- API docs: http://localhost:8000/docs  
-- Health: http://localhost:8000/health  
+There is no custom frontend. The API is tested using FastAPI's default Swagger UI (`/docs`). The UI is intentionally raw — this project focuses on backend + LLM integration.
 
 ---
 
-## Download a sample PDF for testing
+## What It Does
 
-The helper script downloads a public annual report PDF (e.g. from investor relations) for testing:
+Upload a financial report PDF →
 
-```bash
-python download_sample_pdf.py
-```
+1. Extract text using PyPDF  
+2. Send the extracted text to Gemini  
+3. Force structured JSON output  
+4. Return standardized financial fields  
 
-This downloads a public 10-K PDF (e.g. Apple) into `sample_annual_report.pdf` in the project root.
-
----
-
-## Example request
-
-**Upload a PDF and get extracted financial data:**
-
-```bash
-curl -X POST http://localhost:8000/upload \
-  -F "pdf=@sample_annual_report.pdf"
-```
-
-**Example response:**
+Example response:
 
 ```json
 {
@@ -91,51 +33,53 @@ curl -X POST http://localhost:8000/upload \
   "Total_Assets": "352.58 billion",
   "EPS": "6.16"
 }
-```
-
-Missing fields are returned as `null`.
 
 ---
 
-## Pushing to GitHub without leaking secrets
+## Tech Stack
 
-1. **Never commit `.env`.** It is listed in `.gitignore`; confirm with:
-   ```bash
-   git status
-   ```
-   You should not see `.env` in the list.
-
-2. **Commit `.env.example`** so others know which variables to set (with placeholder values only).
-
-3. **Before the first push**, verify:
-   ```bash
-   git check-ignore .env && echo ".env is ignored"
-   cat .gitignore
-   ```
-   Ensure `.env`, `venv/`, and `__pycache__/` are present.
-
-4. If you ever committed `.env` by mistake:
-   - Rotate the API key immediately in Google AI Studio.
-   - Remove the file from history (e.g. `git filter-branch` or BFG Repo-Cleaner) and force-push, or create a new repo and push again without `.env`.
+- FastAPI
+- Uvicorn
+- Google Gemini API
+- PyPDF
+- python-dotenv
 
 ---
 
-## Project structure
+## Setup
 
-```
+### 1. Create Virtual Environment
+
+```bash
+cd financial_llm_extractor
+python3 -m venv venv
+source venv/bin/activate
+
+### 2. Install dependencies
+pip install -r requirements.txt
+
+### 3. Add Gemini API Key
+GEMINI_API_KEY=your_actual_key_here
+
+### 4. Run the Server
+uvicorn main:app --reload --port 8000
+
+### Project Structure 
+
 financial_llm_extractor/
-├── main.py              # FastAPI app, /upload and /health
-├── extractor.py         # PDF text extraction + Gemini call
-├── requirements.txt
+├── main.py
+├── extractor.py
 ├── download_sample_pdf.py
-├── .env                 # Your secrets (do not commit)
-├── .env.example         # Template (safe to commit)
+├── requirements.txt
+├── .env
+├── .env.example
 ├── .gitignore
 └── README.md
-```
 
 ---
 
-## License
+## Demo Screenshot
 
-Use and modify as needed for your project.
+Below is the API working via Swagger UI:
+
+![Swagger Demo](assets/screenshot.png)
