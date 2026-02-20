@@ -49,9 +49,11 @@ Example response:
 
 ## Setup
 
-### 1. Create Virtual Environment
+
 
 ```bash
+### 1. Create Virtual Environment
+
 cd financial_llm_extractor
 python3 -m venv venv
 source venv/bin/activate
@@ -85,5 +87,5 @@ Below is the API working via Swagger UI:
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/r1-yash/financial-llm-extractor/main/assets/screenshot.png" width="900">
+  <img src="https://raw.githubusercontent.com/r1-yash/financial-llm-extractor/main/assets/screenshot.png" width="900"/>
 </p>
