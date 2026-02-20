@@ -86,6 +86,6 @@ financial_llm_extractor/
 Below is the API working via Swagger UI:
 
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/r1-yash/financial-llm-extractor/main/assets/screenshot.png" width="900"/>
-</p>
+## Demo Screenshot
+
+![Swagger UI for Demo](assets/screenshot.png)
