@@ -88,4 +88,5 @@ Below is the API working via Swagger UI:
 
 ## Demo Screenshot
 
+-Available in the assets folder
 ![Swagger UI for Demo](assets/screenshot.png)
