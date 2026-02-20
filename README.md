@@ -33,6 +33,7 @@ Example response:
   "Total_Assets": "352.58 billion",
   "EPS": "6.16"
 }
+```
 
 ---
 
@@ -82,4 +83,7 @@ financial_llm_extractor/
 
 Below is the API working via Swagger UI:
 
-![Swagger Demo](assets/screenshot.png)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/r1-yash/financial-llm-extractor/main/assets/screenshot.png" width="900">
+</p>
